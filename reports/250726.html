@@ -40,12 +40,17 @@
                 height: 400px;
             }
         }
-        .nav-link {
-            transition: color 0.3s, border-bottom-color 0.3s;
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .nav-link.active {
-            color: #2563eb; /* blue-600 */
-            border-bottom-color: #2563eb;
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
         .section-card {
             background-color: white;
@@ -61,25 +66,23 @@
 </head>
 <body class="antialiased">
 
-    <header id="navbar" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+    <nav class="fixed top-0 w-full glassmorphism z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <span class="font-bold text-xl text-slate-800">AI 时报</span>
+                    <a href="../index.html" class="text-2xl font-bold gradient-text hover:opacity-80 transition">AI 时报</a>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#revolution" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-600 border-b-2 border-transparent">开发者革命</a>
-                        <a href="#race" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-600 border-b-2 border-transparent">模型竞赛</a>
-                        <a href="#pulse" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-600 border-b-2 border-transparent">产业脉搏</a>
-                        <a href="#game" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-600 border-b-2 border-transparent">全球博弈</a>
-                    </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#revolution" class="text-gray-700 hover:text-purple-600 transition">开发者革命</a>
+                    <a href="#race" class="text-gray-700 hover:text-purple-600 transition">模型竞赛</a>
+                    <a href="#pulse" class="text-gray-700 hover:text-purple-600 transition">产业脉搏</a>
+                    <a href="#game" class="text-gray-700 hover:text-purple-600 transition">全球博弈</a>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main>
+    <main class="pt-16">
         <section class="py-16 md:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">AI时报：2025年7月第四周观察</h1>
@@ -351,20 +354,26 @@
                 showMathBtn.classList.remove('bg-blue-600', 'text-white');
             });
 
+            // Active section highlighting
             const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
-                        });
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
                     }
                 });
-            }, { rootMargin: "-50% 0px -50% 0px" });
-
-            sections.forEach(section => {
-                observer.observe(section);
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-purple-600');
+                    if (link.getAttribute('href').slice(1) === current) {
+                        link.classList.add('text-purple-600');
+                    }
+                });
             });
         });
     </script>
