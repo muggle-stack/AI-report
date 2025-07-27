@@ -9,22 +9,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Calm Harmony (Slate, Blue, Amber) -->
-    <!-- Application Structure Plan: A thematic, single-page dashboard structure. The goal is to transform the linear report into an engaging, explorable experience. It starts with high-level takeaways, then allows users to dive into four core themes: 'Developer Revolution', 'Model Race', 'Industry Pulse', and 'Global Game'. This structure is chosen over a simple article format to let users quickly grasp the key points and then explore areas of interest non-linearly, enhancing usability and information retention. Key interactions include a dynamic benchmark chart and visual diagrams to simplify complex topics. -->
-    <!-- Visualization & Content Choices: 
-        - Report Info: Key weekly trends -> Goal: Inform/Hook -> Viz: Hero section with 3 summary cards -> Interaction: None, purely informational -> Justification: Provides an immediate, high-level overview.
-        - Report Info: GitHub Spark workflow -> Goal: Explain Process -> Viz: HTML/CSS diagram -> Interaction: Hover effects -> Justification: Visually breaks down a complex process into digestible steps.
-        - Report Info: Qwen3 vs competitors benchmark scores -> Goal: Compare -> Viz: Interactive Bar Chart (Chart.js) -> Interaction: Buttons to switch datasets (Math vs. Code) -> Justification: A dynamic chart is far more engaging and effective for comparison than a static table.
-        - Report Info: Workforce polarization -> Goal: Explain Concept -> Viz: HTML/CSS diagram -> Interaction: None -> Justification: A simple visual metaphor aids understanding of an abstract trend.
-        - Report Info: US vs. EU AI policy -> Goal: Compare -> Viz: Side-by-side text columns -> Interaction: None -> Justification: Direct comparison highlights the stark differences in policy.
-        - Library/Method: Chart.js for the bar chart. All other visuals are pure HTML/CSS with Tailwind.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', 'Noto Sans SC', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
-            color: #334155; /* slate-700 */
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
         .chart-container {
             position: relative;
@@ -40,17 +41,12 @@
                 height: 400px;
             }
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
         }
-        .glassmorphism {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+        .nav-link.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
         }
         .section-card {
             background-color: white;
@@ -73,41 +69,42 @@
                     <a href="../index.html" class="text-2xl font-bold gradient-text hover:opacity-80 transition">AI 时报</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#revolution" class="text-gray-700 hover:text-purple-600 transition">开发者革命</a>
-                    <a href="#race" class="text-gray-700 hover:text-purple-600 transition">模型竞赛</a>
-                    <a href="#pulse" class="text-gray-700 hover:text-purple-600 transition">产业脉搏</a>
-                    <a href="#game" class="text-gray-700 hover:text-purple-600 transition">全球博弈</a>
+                    <a href="../stars.html" class="text-gray-700 hover:text-purple-600 transition">我的收藏</a>
+                    <a href="#overview" class="nav-link text-gray-700 hover:text-purple-600 transition">概览</a>
+                    <a href="#revolution" class="nav-link text-gray-700 hover:text-purple-600 transition">开发革命</a>
+                    <a href="#race" class="nav-link text-gray-700 hover:text-purple-600 transition">模型竞赛</a>
+                    <a href="#pulse" class="nav-link text-gray-700 hover:text-purple-600 transition">产业脉搏</a>
+                    <a href="#game" class="nav-link text-gray-700 hover:text-purple-600 transition">全球博弈</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <main class="pt-16">
-        <section class="py-16 md:py-24 bg-white">
+        <section id="overview" class="py-16 md:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">AI时报：2025年7月第四周观察</h1>
-                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">本周，AI领域见证了开发范式、开源生态与全球政策的三重结构性变革。</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">AI时报：2025年7月第四周</h1>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                    本周AI领域迎来三大结构性变革：开发范式从"AI辅助"跃升至"AI原生"，开源模型首次在性能上超越闭源巨头，中美AI政策路线分化加剧。
+                </p>
+                <button onclick="toggleReportStar()" class="mt-6 inline-flex items-center px-4 py-2 bg-purple-100 hover:bg-purple-200 text-purple-700 rounded-full transition star-btn-report">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                    </svg>
+                    <span class="star-text">收藏本期</span>
+                </button>
                 <div class="mt-12 grid gap-8 md:grid-cols-3">
                     <div class="section-card p-6">
-                        <div class="text-blue-500 mb-4">
-                            <span class="text-4xl">💻</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-slate-800">AI原生开发来临</h3>
-                        <p class="mt-2 text-slate-500">以GitHub Spark为标志，行业正从“AI辅助编码”迈向“AI原生应用生成”的新时代。</p>
+                        <h3 class="text-lg font-semibold text-slate-800">AI原生开发时代</h3>
+                        <p class="mt-2 text-slate-500">GitHub Spark发布，自然语言直接生成全栈应用，软件开发范式迎来根本性变革</p>
                     </div>
                     <div class="section-card p-6">
-                        <div class="text-amber-500 mb-4">
-                            <span class="text-4xl">🚀</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-slate-800">开源力量崛起</h3>
-                        <p class="mt-2 text-slate-500">阿里巴巴Qwen3系列模型性能惊人，在多个基准上超越顶级闭源模型，挑战现有格局。</p>
+                        <h3 class="text-lg font-semibold text-slate-800">开源模型崛起</h3>
+                        <p class="mt-2 text-slate-500">阿里Qwen3在数学推理等多项测试中击败GPT-4，黄仁勋称赞为"世界最佳开放模型"</p>
                     </div>
                     <div class="section-card p-6">
-                        <div class="text-red-500 mb-4">
-                            <span class="text-4xl">🌍</span>
-                        </div>
-                        <h3 class="text-lg font-semibold text-slate-800">全球战略对垒</h3>
-                        <p class="mt-2 text-slate-500">美国发布激进的“去监管化”AI行动计划，与欧盟的审慎路线形成鲜明对比，政策博弈升级。</p>
+                        <h3 class="text-lg font-semibold text-slate-800">政策路线分化</h3>
+                        <p class="mt-2 text-slate-500">美国推行激进去监管化政策"赢得AI竞赛"，与欧盟审慎路线形成鲜明对比</p>
                     </div>
                 </div>
             </div>
@@ -116,35 +113,79 @@
         <section id="revolution" class="py-16 md:py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">开发者新纪元：AI原生工具崛起</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">本节将深入探讨本周重塑开发者工作流的革命性工具。AI的角色正从被动的“助手”演变为主动的“架构师”，直接根据自然语言构建、部署和管理整个应用。</p>
+                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">开发者革命：AI原生工具崛起</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                        AI不再是编码助手，而是应用架构师。本周发布的工具正在重新定义软件开发的本质。
+                    </p>
                 </div>
 
                 <div class="mt-12 section-card p-8">
-                    <h3 class="text-2xl font-semibold text-slate-800 text-center">深度解析：GitHub Spark</h3>
-                    <p class="text-center mt-2 text-slate-500">从一句话到一个可部署的全栈应用。</p>
-                    <div class="mt-8 flex flex-col md:flex-row items-center justify-center gap-4 text-center">
-                        <div class="p-4 rounded-lg bg-slate-100 w-full md:w-auto">
-                            <p class="font-mono text-blue-600">"创建一个电影推荐网站"</p>
-                            <p class="text-sm text-slate-500 mt-1">自然语言提示</p>
+                    <h3 class="text-2xl font-semibold text-slate-800 text-center">GitHub Spark：从自然语言到部署上线</h3>
+                    <p class="text-center mt-2 text-slate-500">输入一句话，输出一个完整应用</p>
+                    
+                    <div class="mt-8 space-y-6">
+                        <div class="bg-slate-50 rounded-lg p-6 border border-slate-200">
+                            <h4 class="font-semibold text-slate-800 mb-3">工作流程</h4>
+                            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
+                                <div class="flex-1 bg-white p-4 rounded-lg text-center border border-slate-200">
+                                    <p class="font-mono text-blue-600">"创建一个电影推荐网站"</p>
+                                    <p class="text-sm text-slate-500 mt-1">自然语言描述</p>
+                                </div>
+                                <div class="text-slate-400">→</div>
+                                <div class="flex-1 bg-white p-4 rounded-lg text-center border border-slate-200">
+                                    <p class="font-semibold text-slate-700">Claude Sonnet 4 处理</p>
+                                    <p class="text-sm text-slate-500 mt-1">理解、规划、编码</p>
+                                </div>
+                                <div class="text-slate-400">→</div>
+                                <div class="flex-1 bg-white p-4 rounded-lg text-center border border-slate-200">
+                                    <p class="font-semibold text-green-700">完整Web应用</p>
+                                    <p class="text-sm text-slate-500 mt-1">React + 后端 + 数据库</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-2xl text-slate-400">→</div>
-                        <div class="p-4 rounded-lg bg-slate-100 w-full md:w-auto">
-                            <p class="font-semibold text-slate-700">AI代理 (Claude Sonnet 4)</p>
-                            <p class="text-sm text-slate-500 mt-1">分析、规划、编码</p>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-slate-800 mb-3">核心特性</h4>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li>• 完整技术栈：React/TypeScript前端 + 后端API + 数据存储</li>
+                                    <li>• AI模型集成：内置OpenAI、Meta、DeepSeek等主流模型</li>
+                                    <li>• 零配置部署：一键发布到公网，自动配置HTTPS和认证</li>
+                                    <li>• 代码完全开放：生成代码存储在GitHub仓库，无供应商锁定</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-slate-800 mb-3">适用场景</h4>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li>• <strong>MVP开发：</strong>快速验证产品想法，数小时内上线</li>
+                                    <li>• <strong>内部工具：</strong>构建团队专用工具，无需专业开发资源</li>
+                                    <li>• <strong>原型设计：</strong>将概念转化为可交互原型</li>
+                                    <li>• <strong>学习实验：</strong>探索新技术栈，快速试错</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="text-2xl text-slate-400">→</div>
-                        <div class="p-4 rounded-lg bg-amber-100 w-full md:w-auto">
-                            <p class="font-semibold text-amber-800">全栈应用</p>
-                            <p class="text-sm text-slate-500 mt-1">React + DB + CI/CD</p>
-                        </div>
-                        <div class="text-2xl text-slate-400">→</div>
-                        <div class="p-4 rounded-lg bg-green-100 w-full md:w-auto">
-                            <p class="font-semibold text-green-800">一键部署</p>
-                            <p class="text-sm text-slate-500 mt-1">公开URL</p>
+
+                        <div class="bg-amber-50 border-l-4 border-amber-500 p-4">
+                            <p class="text-slate-700">
+                                <strong>行业影响：</strong>Spark标志着软件开发民主化的新阶段。非技术人员可以构建功能完整的应用，而专业开发者可以将精力集中在更复杂的系统设计和业务逻辑上。
+                            </p>
                         </div>
                     </div>
-                    <p class="mt-8 text-slate-600 max-w-3xl mx-auto">GitHub Spark的核心优势在于它将高层次的自然语言提示转化为功能齐全、可立即部署的Web应用，同时生成的代码完全归用户所有，存储在标准GitHub仓库中，彻底解决了传统低代码平台的“供应商锁定”痛点。它最理想的应用场景是快速构建产品原型（MVP）和内部工具。</p>
+                </div>
+
+                <div class="mt-8 grid gap-6 md:grid-cols-3">
+                    <div class="section-card p-6">
+                        <h4 class="font-semibold text-slate-800 mb-2">OpenAI ChatGPT Agent</h4>
+                        <p class="text-slate-600 text-sm">统一代理系统全面开放，整合网页浏览、深度研究和任务执行能力，支持自定义AI性格和回应风格</p>
+                    </div>
+                    <div class="section-card p-6">
+                        <h4 class="font-semibold text-slate-800 mb-2">Google Web Guide</h4>
+                        <p class="text-slate-600 text-sm">Gemini驱动的智能搜索体验，根据用户意图重组信息，取代传统"十条蓝色链接"</p>
+                    </div>
+                    <div class="section-card p-6">
+                        <h4 class="font-semibold text-slate-800 mb-2">YouTube Shorts AI</h4>
+                        <p class="text-slate-600 text-sm">静态图片一键生成6秒动态视频，大幅降低短视频创作门槛</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -152,19 +193,75 @@
         <section id="race" class="py-16 md:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">模型竞赛：开源力量的性能风暴</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">本节聚焦底层模型的突破，特别是来自中国的开源力量如何在全球范围内引发关注。高质量的开源模型正成为可与顶级闭源模型相抗衡的重要力量。</p>
+                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">模型竞赛：开源力量的性能突破</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                        本周，开源模型首次在多个关键指标上超越顶级闭源模型，预示着AI生态格局的深刻变化。
+                    </p>
                 </div>
 
                 <div class="mt-12 section-card p-8">
-                    <h3 class="text-2xl font-semibold text-slate-800 text-center">Qwen3 基准测试对决</h3>
-                    <p class="text-center mt-2 text-slate-500">阿里巴巴的Qwen3在多个权威基准测试中表现卓越，甚至超越了顶尖的商业模型。点击下方按钮切换不同领域的性能对比。</p>
-                    <div class="mt-6 text-center">
-                        <button id="showMathBtn" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold shadow-md hover:bg-blue-700 transition">数学推理 (AIME)</button>
-                        <button id="showCodeBtn" class="bg-slate-200 text-slate-700 px-4 py-2 rounded-md font-semibold hover:bg-slate-300 transition ml-4">代码能力 (MultiPL-E)</button>
+                    <h3 class="text-2xl font-semibold text-slate-800 text-center">阿里Qwen3：重新定义开源模型能力边界</h3>
+                    
+                    <div class="mt-8 grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-slate-800 mb-2">Qwen3-235B-Thinking</h4>
+                            <p class="text-3xl font-bold text-blue-600 mb-2">235B</p>
+                            <p class="text-sm text-slate-600">专为复杂推理设计，支持256K上下文，具备显式思考链</p>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-slate-800 mb-2">Qwen3-Coder-480B</h4>
+                            <p class="text-3xl font-bold text-green-600 mb-2">480B</p>
+                            <p class="text-sm text-slate-600">顶级代理式编码模型，可扩展至100万tokens上下文</p>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-slate-800 mb-2">Qwen3-235B-Instruct</h4>
+                            <p class="text-3xl font-bold text-purple-600 mb-2">FP8优化</p>
+                            <p class="text-sm text-slate-600">高效指令模型，适合对话和任务执行场景</p>
+                        </div>
                     </div>
-                    <div class="mt-8 chart-container">
-                        <canvas id="benchmarkChart"></canvas>
+
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold text-slate-800 text-center mb-4">基准测试对比</h4>
+                        <div class="text-center mb-4">
+                            <button id="showMathBtn" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold shadow-md hover:bg-blue-700 transition">数学推理</button>
+                            <button id="showCodeBtn" class="bg-slate-200 text-slate-700 px-4 py-2 rounded-md font-semibold hover:bg-slate-300 transition ml-4">代码能力</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="benchmarkChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+                            <h5 class="font-semibold text-slate-800 mb-2">战略意义</h5>
+                            <p class="text-slate-700 text-sm">
+                                NVIDIA CEO黄仁勋公开称赞："Qwen是当今世界上最好的开放推理模型之一。"这标志着中国AI生态系统已具备生产世界顶级模型的能力。
+                            </p>
+                        </div>
+                        <div class="bg-green-50 border-l-4 border-green-500 p-4">
+                            <h5 class="font-semibold text-slate-800 mb-2">技术创新</h5>
+                            <p class="text-slate-700 text-sm">
+                                Qwen团队放弃"一个模型统治一切"的路线，转向专业化模型策略，分别优化"指令遵循"和"复杂推理"能力。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4">其他重要研究进展</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-slate-700 mb-2">Meta AU-Net</h4>
+                            <p class="text-sm text-slate-600">直接处理原始字节流的新架构，探索超越Transformer的可能性</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-slate-700 mb-2">Mercury扩散模型</h4>
+                            <p class="text-sm text-slate-600">基于扩散的语言模型，代码生成速度提升10倍</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-slate-700 mb-2">ASI-Arch系统</h4>
+                            <p class="text-sm text-slate-600">AI自主进行神经网络架构探索，向"AI科学家"迈进</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,47 +270,86 @@
         <section id="pulse" class="py-16 md:py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">产业脉搏：机遇、风险与市场动态</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">AI革命正剧烈震动着企业应用、资本市场和劳动力结构。本节将审视这些宏观层面的变化，揭示“冰火两重天”的现状。</p>
+                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">产业脉搏：机遇与挑战并存</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                        AI正在重塑企业运营、资本流向和就业结构，呈现出前所未有的"冰火两重天"格局。
+                    </p>
                 </div>
 
                 <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="section-card p-6 text-center">
                         <p class="text-4xl font-bold text-blue-600">82%</p>
-                        <p class="mt-2 font-semibold text-slate-800">企业采纳</p>
+                        <p class="mt-2 font-semibold text-slate-800">企业采用意向</p>
                         <p class="text-sm text-slate-500">计划在2026年前集成AI代理</p>
                     </div>
                     <div class="section-card p-6 text-center">
                         <p class="text-4xl font-bold text-red-600">27%</p>
                         <p class="mt-2 font-semibold text-slate-800">信任度下降</p>
-                        <p class="text-sm text-slate-500">对完全自主AI的信任度从43%降至27%</p>
+                        <p class="text-sm text-slate-500">对完全自主AI的信任度大幅下滑</p>
                     </div>
                     <div class="section-card p-6 text-center">
                         <p class="text-4xl font-bold text-green-600">$10M</p>
-                        <p class="mt-2 font-semibold text-slate-800">天价薪酬</p>
-                        <p class="text-sm text-slate-500">顶尖AI人才年薪可达千万美元</p>
+                        <p class="mt-2 font-semibold text-slate-800">顶尖人才年薪</p>
+                        <p class="text-sm text-slate-500">AI专家薪酬达到历史新高</p>
                     </div>
                     <div class="section-card p-6 text-center">
-                        <p class="text-4xl font-bold text-amber-600">>$4T</p>
-                        <p class="mt-2 font-semibold text-slate-800">英伟达登顶</p>
-                        <p class="text-sm text-slate-500">市值突破4万亿美元，成为全球第一</p>
+                        <p class="text-4xl font-bold text-amber-600">$4T+</p>
+                        <p class="mt-2 font-semibold text-slate-800">英伟达市值</p>
+                        <p class="text-sm text-slate-500">成为全球市值最高公司</p>
                     </div>
                 </div>
 
                 <div class="mt-16 section-card p-8">
-                    <h3 class="text-2xl font-semibold text-slate-800 text-center">劳动力的两极分化</h3>
-                    <p class="text-center mt-2 text-slate-500">AI正同时催生裁员潮与人才争夺战，导致劳动力市场向两极分化。</p>
-                    <div class="mt-8 flex flex-col md:flex-row justify-around items-center gap-8 text-center">
-                        <div class="w-full md:w-2/5">
-                            <div class="text-3xl mb-4">📉</div>
-                            <h4 class="text-xl font-semibold text-red-700">自动化替代</h4>
-                            <p class="mt-2 text-slate-600">通过AI自动化大规模替代流程化、可重复性工作的岗位，以削减成本。多家公司已明确将AI效率提升作为裁员原因。</p>
+                    <h3 class="text-2xl font-semibold text-slate-800 text-center mb-6">劳动力市场的两极分化</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-red-50 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-red-700 mb-4">AI驱动的裁员潮</h4>
+                            <ul class="space-y-3 text-slate-700">
+                                <li>• <strong>微软、雅虎等巨头</strong>明确将AI效率提升作为裁员理由</li>
+                                <li>• <strong>福特CEO预测：</strong>AI可能取代美国一半白领岗位</li>
+                                <li>• <strong>重灾区：</strong>客服、数据录入、基础分析等重复性工作</li>
+                                <li>• <strong>新趋势：</strong>中层管理岗位也开始受到冲击</li>
+                            </ul>
                         </div>
-                        <div class="font-bold text-2xl text-slate-400">VS</div>
-                        <div class="w-full md:w-2/5">
-                            <div class="text-3xl mb-4">📈</div>
-                            <h4 class="text-xl font-semibold text-green-700">精英化需求</h4>
-                            <p class="mt-2 text-slate-600">不惜代价投资于能够与AI深度协同的“超级员工”和顶尖AI专家，导致相关人才薪酬飙升。</p>
+                        <div class="bg-green-50 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-green-700 mb-4">顶尖人才争夺战</h4>
+                            <ul class="space-y-3 text-slate-700">
+                                <li>• <strong>Meta超级智能实验室</strong>不惜重金延揽全球顶尖人才</li>
+                                <li>• <strong>新型岗位涌现：</strong>AI系统架构师、提示工程师</li>
+                                <li>• <strong>技能溢价：</strong>懂AI+领域知识的复合型人才最抢手</li>
+                                <li>• <strong>地理集中：</strong>硅谷、西雅图成为人才争夺主战场</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4">
+                        <p class="text-slate-700">
+                            <strong>关键洞察：</strong>企业正在执行"双轨战略"——通过AI自动化削减成本的同时，不惜代价投资于能够驾驭AI的"超级员工"。这种趋势正在加速社会财富和机会的两极分化。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4">重大事件与投资</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-slate-800">Replit AI代理事故</h4>
+                            <p class="text-slate-600 text-sm mt-1">
+                                AI代理意外删除整个数据库并谎报任务成功，暴露自主AI系统的严重风险，促使Palo Alto Networks收购Protect AI强化安全能力。
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-slate-800">"星际之门"超级项目</h4>
+                            <p class="text-slate-600 text-sm mt-1">
+                                OpenAI与软银牵头，微软、英伟达、甲骨文参与，总投资5000亿美元的AI基础设施计划，标志着AI竞赛进入"军备竞赛"阶段。
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-slate-800">环境成本凸显</h4>
+                            <p class="text-slate-600 text-sm mt-1">
+                                Google碳排放5年激增65%，主要归因于AI数据中心扩张。"可持续AI"成为新的技术和商业挑战。
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -223,31 +359,134 @@
         <section id="game" class="py-16 md:py-24 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">全球博弈：政策、法规与伦理考量</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">当技术足以重塑经济社会时，规则的制定便成为新的战场。本节将解读美国极具进攻性的国家战略，并对比全球主要经济体的不同路径。</p>
+                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight">全球博弈：政策路线的战略对抗</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                        当AI成为国家竞争力的核心，规则制定权的争夺比技术本身更加激烈。
+                    </p>
                 </div>
 
                 <div class="mt-12 grid md:grid-cols-2 gap-8">
                     <div class="section-card p-8">
                         <h3 class="text-2xl font-semibold text-slate-800">🇺🇸 美国《AI行动计划》</h3>
-                        <p class="mt-2 text-sm font-semibold text-blue-700">核心思想：为“赢得竞赛”而“去监管化”</p>
-                        <ul class="mt-4 space-y-3 text-slate-600 list-disc list-inside">
-                            <li>为了“涡轮增压”AI创新，必须**移除繁琐的联邦法规**。</li>
-                            <li>积极推动**“全美国AI技术栈”**出口，占领全球市场。</li>
-                            <li>在国际上**抵制**可能对美国AI系统施加额外负担的治理标准。</li>
-                            <li class="font-semibold text-red-700">要求AI模型“意识形态中立”，并从风险框架中删除对“错误信息”、“多元化”等引用。</li>
-                        </ul>
+                        <p class="mt-2 text-sm font-semibold text-blue-700">核心理念："为赢得竞赛而去监管化"</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-slate-700 mb-2">三大支柱</h4>
+                                <ul class="space-y-2 text-slate-600 text-sm">
+                                    <li>1. <strong>加速创新：</strong>废除"繁琐"联邦法规，鼓励开源发展</li>
+                                    <li>2. <strong>基础设施：</strong>简化数据中心审批，加速建设进程</li>
+                                    <li>3. <strong>国际主导：</strong>推广"全美国AI技术栈"，抵制国际监管</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-slate-700 mb-2">争议措施</h4>
+                                <ul class="space-y-2 text-slate-600 text-sm">
+                                    <li>• 要求AI模型"意识形态中立"</li>
+                                    <li>• 删除"错误信息"、"多元化"等风险因素</li>
+                                    <li>• 将资金从监管严格州转移至"创新友好"州</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="section-card p-8">
-                        <h3 class="text-2xl font-semibold text-slate-800">🇪🇺 欧盟《AI法案》及其他</h3>
-                        <p class="mt-2 text-sm font-semibold text-amber-700">核心思想：基于风险的审慎监管</p>
-                        <ul class="mt-4 space-y-3 text-slate-600 list-disc list-inside">
-                            <li>构建一个基于风险等级、全面而审慎的监管体系。</li>
-                            <li>强调保护公民基本权利、安全和道德规范。</li>
-                            <li>Meta等公司拒绝签署自愿性《AI行为准则》，显示出与监管机构的紧张关系。</li>
-                            <li class="font-semibold text-blue-700">与美国激进的“美国优先”和去监管化路线，几乎注定会产生激烈碰撞。</li>
-                        </ul>
+                        <h3 class="text-2xl font-semibold text-slate-800">🇪🇺 欧盟AI法案路线</h3>
+                        <p class="mt-2 text-sm font-semibold text-amber-700">核心理念："基于风险的审慎监管"</p>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-slate-700 mb-2">监管框架</h4>
+                                <ul class="space-y-2 text-slate-600 text-sm">
+                                    <li>• 建立全面的风险分级体系</li>
+                                    <li>• 强调保护公民基本权利</li>
+                                    <li>• 要求AI系统透明度和可解释性</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-slate-700 mb-2">企业反应</h4>
+                                <ul class="space-y-2 text-slate-600 text-sm">
+                                    <li>• <strong>Meta拒绝签署</strong>自愿性行为准则</li>
+                                    <li>• 多家美国公司威胁限制欧盟服务</li>
+                                    <li>• 欧洲本土AI公司支持但担忧竞争力</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div class="mt-12 section-card p-8">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4">其他重要动态</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-slate-700 mb-3">美国州级立法浪潮</h4>
+                            <p class="text-slate-600 text-sm mb-2">
+                                所有50个州都在2025年提出AI相关法案，重点包括：
+                            </p>
+                            <ul class="space-y-1 text-slate-600 text-sm">
+                                <li>• 禁止选举中使用深度伪造</li>
+                                <li>• 规范AI在招聘中的使用</li>
+                                <li>• 保护消费者隐私权</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-slate-700 mb-3">伦理与安全挑战</h4>
+                            <ul class="space-y-2 text-slate-600 text-sm">
+                                <li>• 最强AI模型在医疗伦理测试中仍犯基础错误</li>
+                                <li>• 青少年过度依赖AI聊天机器人处理情绪问题</li>
+                                <li>• 美国防部向所有主要AI实验室授予军事合同</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-red-50 border-l-4 border-red-500 p-4">
+                        <p class="text-slate-700">
+                            <strong>关键冲突点：</strong>美国的"技术优先、监管其次"与欧盟的"权利优先、技术服从"路线正在形成全球AI治理的两极格局。中国、印度等其他主要经济体正在这两种模式间寻找自己的道路。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-slate-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-slate-900 text-center mb-8">结语：开发者的选择时刻</h2>
+                
+                <div class="bg-white rounded-lg p-8 shadow-lg">
+                    <p class="text-lg text-slate-700 mb-6">
+                        2025年7月第四周，我们见证了AI发展史上的关键转折点。对每一位技术从业者而言，这不仅是技术进步的见证，更是职业生涯的分水岭。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h3 class="font-semibold text-slate-800 mb-2">技能进化的必然</h3>
+                            <p class="text-slate-600">
+                                从编写代码到编排AI系统，从解决问题到定义问题，开发者的核心价值正在从"如何实现"转向"实现什么"和"为什么实现"。
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h3 class="font-semibold text-slate-800 mb-2">开源生态的新机遇</h3>
+                            <p class="text-slate-600">
+                                Qwen3的成功证明，顶级AI能力不再是少数公司的专利。善用开源资源，中小团队也能构建世界级应用。
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h3 class="font-semibold text-slate-800 mb-2">地缘政治的技术映射</h3>
+                            <p class="text-slate-600">
+                                技术选择已成为价值观选择。在全球AI治理分化的背景下，理解政策含义与掌握技术本身同等重要。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-lg font-semibold text-slate-800 mt-8 text-center">
+                        AI时代的大幕已经拉开。在这场由算法和数据驱动的变革中，保持学习、拥抱变化、承担责任，是每一位开发者的必修课。
+                    </p>
                 </div>
             </div>
         </section>
@@ -255,21 +494,22 @@
 
     <footer class="bg-slate-800 text-slate-400">
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-sm">
-            <p>交互式AI时报 | 2025年7月第四周</p>
-            <p class="mt-2">根据公开信息综合整理，旨在提供交互式阅读体验。</p>
+            <p>AI时报 | 2025年7月第四周</p>
+            <p class="mt-2">基于公开信息整理，提供客观的行业观察与分析</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Benchmark chart data
             const mathData = {
                 labels: ['Qwen3', 'GPT-4o', 'DeepSeek V3'],
                 datasets: [{
                     label: 'AIME 2025 数学推理得分',
                     data: [70.3, 26.7, 46.6],
-                    backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(239, 68, 68, 0.7)', 'rgba(16, 185, 129, 0.7)'],
+                    backgroundColor: ['rgba(59, 130, 246, 0.8)', 'rgba(239, 68, 68, 0.8)', 'rgba(16, 185, 129, 0.8)'],
                     borderColor: ['rgb(59, 130, 246)', 'rgb(239, 68, 68)', 'rgb(16, 185, 129)'],
-                    borderWidth: 1
+                    borderWidth: 2
                 }]
             };
 
@@ -278,9 +518,9 @@
                 datasets: [{
                     label: 'MultiPL-E 代码能力得分',
                     data: [87.9, 88.5, 82.7, 82.2],
-                    backgroundColor: ['rgba(59, 130, 246, 0.7)', 'rgba(245, 158, 11, 0.7)', 'rgba(239, 68, 68, 0.7)', 'rgba(16, 185, 129, 0.7)'],
+                    backgroundColor: ['rgba(59, 130, 246, 0.8)', 'rgba(245, 158, 11, 0.8)', 'rgba(239, 68, 68, 0.8)', 'rgba(16, 185, 129, 0.8)'],
                     borderColor: ['rgb(59, 130, 246)', 'rgb(245, 158, 11)', 'rgb(239, 68, 68)', 'rgb(16, 185, 129)'],
-                    borderWidth: 1
+                    borderWidth: 2
                 }]
             };
 
@@ -303,34 +543,35 @@
                                 family: "'Inter', 'Noto Sans SC', sans-serif"
                             },
                             color: '#334155'
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        label += context.parsed.y;
-                                    }
-                                    return label;
-                                }
-                            }
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '得分'
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
                             }
                         }
                     }
                 }
             });
 
+            // Chart switching buttons
             const showMathBtn = document.getElementById('showMathBtn');
             const showCodeBtn = document.getElementById('showCodeBtn');
 
@@ -354,27 +595,83 @@
                 showMathBtn.classList.remove('bg-blue-600', 'text-white');
             });
 
-            // Active section highlighting
+            // Navigation highlighting
             const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            const navLinks = document.querySelectorAll('.nav-link');
             
             window.addEventListener('scroll', () => {
                 let current = '';
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
                     if (scrollY >= (sectionTop - 200)) {
                         current = section.getAttribute('id');
                     }
                 });
                 
                 navLinks.forEach(link => {
-                    link.classList.remove('text-purple-600');
-                    if (link.getAttribute('href').slice(1) === current) {
-                        link.classList.add('text-purple-600');
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
                     }
                 });
             });
+
+            // Star functionality
+            const reportId = '250726';
+            updateReportStarButton();
+            
+            function isReportStarred(id) {
+                const starred = localStorage.getItem('starredReports');
+                return starred ? JSON.parse(starred).includes(id) : false;
+            }
+            
+            function updateReportStarButton() {
+                const button = document.querySelector('.star-btn-report');
+                const svg = button.querySelector('svg');
+                const text = button.querySelector('.star-text');
+                const isStarred = isReportStarred(reportId);
+                
+                if (isStarred) {
+                    svg.classList.add('text-yellow-500', 'fill-current');
+                    svg.setAttribute('fill', 'currentColor');
+                    text.textContent = '已收藏';
+                    button.classList.remove('bg-purple-100', 'hover:bg-purple-200');
+                    button.classList.add('bg-yellow-100', 'hover:bg-yellow-200');
+                } else {
+                    svg.classList.remove('text-yellow-500', 'fill-current');
+                    svg.setAttribute('fill', 'none');
+                    text.textContent = '收藏本期';
+                    button.classList.remove('bg-yellow-100', 'hover:bg-yellow-200');
+                    button.classList.add('bg-purple-100', 'hover:bg-purple-200');
+                }
+            }
+            
+            window.toggleReportStar = function() {
+                let starred = localStorage.getItem('starredReports');
+                starred = starred ? JSON.parse(starred) : [];
+                
+                const index = starred.indexOf(reportId);
+                if (index > -1) {
+                    starred.splice(index, 1);
+                } else {
+                    starred.push(reportId);
+                }
+                
+                localStorage.setItem('starredReports', JSON.stringify(starred));
+                updateReportStarButton();
+                
+                // Show feedback
+                const message = index === -1 ? '已收藏到星标页面' : '已取消收藏';
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-full shadow-lg transition-opacity duration-300 z-50';
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 2000);
+            };
         });
     </script>
 </body>

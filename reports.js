@@ -22,10 +22,16 @@ function formatDate(dateString) {
 // Create report card HTML
 function createReportCard(report, index) {
     const delay = index * 100; // Stagger animations
+    const isStarred = isReportStarred(report.id);
     return `
         <div class="bg-white rounded-xl shadow-lg p-6 card-hover report-card" style="animation-delay: ${delay}ms">
-            <div class="mb-4">
+            <div class="mb-4 flex justify-between items-center">
                 <span class="text-sm text-purple-600 font-semibold">${formatDate(report.date)}</span>
+                <button onclick="toggleStar('${report.id}')" class="star-btn p-2 rounded-full hover:bg-gray-100 transition" data-report-id="${report.id}">
+                    <svg class="w-5 h-5 ${isStarred ? 'text-yellow-500 fill-current' : 'text-gray-400'}" fill="${isStarred ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                    </svg>
+                </button>
             </div>
             <h4 class="text-xl font-bold text-gray-900 mb-3">${report.title}</h4>
             <p class="text-gray-600 mb-4 line-clamp-2">${report.summary}</p>
@@ -52,15 +58,23 @@ function createReportCard(report, index) {
 
 // Create latest report card (featured style)
 function createLatestReportCard(report) {
+    const isStarred = isReportStarred(report.id);
     return `
         <div class="bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl shadow-2xl p-8 text-white card-hover">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center">
                 <div class="flex-1 mb-6 lg:mb-0">
-                    <div class="mb-4">
-                        <span class="inline-block px-4 py-1 bg-white/20 rounded-full text-sm font-semibold">
-                            最新发布
-                        </span>
-                        <span class="ml-3 text-purple-200">${formatDate(report.date)}</span>
+                    <div class="mb-4 flex justify-between items-center">
+                        <div>
+                            <span class="inline-block px-4 py-1 bg-white/20 rounded-full text-sm font-semibold">
+                                最新发布
+                            </span>
+                            <span class="ml-3 text-purple-200">${formatDate(report.date)}</span>
+                        </div>
+                        <button onclick="toggleStar('${report.id}')" class="star-btn p-2 rounded-full hover:bg-white/20 transition" data-report-id="${report.id}">
+                            <svg class="w-6 h-6 ${isStarred ? 'text-yellow-400 fill-current' : 'text-white/70'}" fill="${isStarred ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                        </button>
                     </div>
                     <h4 class="text-3xl font-bold mb-4">${report.title}</h4>
                     <p class="text-purple-100 mb-6 text-lg">${report.summary}</p>
@@ -194,3 +208,76 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 });
+
+// Star functionality
+function getStarredReports() {
+    const starred = localStorage.getItem('starredReports');
+    return starred ? JSON.parse(starred) : [];
+}
+
+function saveStarredReports(starred) {
+    localStorage.setItem('starredReports', JSON.stringify(starred));
+}
+
+function isReportStarred(reportId) {
+    const starred = getStarredReports();
+    return starred.includes(reportId);
+}
+
+function toggleStar(reportId) {
+    let starred = getStarredReports();
+    const index = starred.indexOf(reportId);
+    
+    if (index > -1) {
+        // Remove from starred
+        starred.splice(index, 1);
+    } else {
+        // Add to starred
+        starred.push(reportId);
+    }
+    
+    saveStarredReports(starred);
+    
+    // Update UI
+    updateStarButtons(reportId);
+    
+    // Show feedback
+    showStarFeedback(index === -1);
+}
+
+function updateStarButtons(reportId) {
+    const buttons = document.querySelectorAll(`[data-report-id="${reportId}"]`);
+    const isStarred = isReportStarred(reportId);
+    
+    buttons.forEach(button => {
+        const svg = button.querySelector('svg');
+        if (isStarred) {
+            svg.classList.remove('text-gray-400', 'text-white/70');
+            svg.classList.add('text-yellow-500', 'fill-current');
+            svg.setAttribute('fill', 'currentColor');
+        } else {
+            svg.classList.remove('text-yellow-500', 'text-yellow-400', 'fill-current');
+            svg.classList.add('text-gray-400');
+            svg.setAttribute('fill', 'none');
+            
+            // Check if it's in the featured card
+            if (button.closest('.bg-gradient-to-br')) {
+                svg.classList.remove('text-gray-400');
+                svg.classList.add('text-white/70');
+            }
+        }
+    });
+}
+
+function showStarFeedback(added) {
+    const message = added ? '已收藏到星标页面' : '已取消收藏';
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-full shadow-lg transition-opacity duration-300 z-50';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 2000);
+}
