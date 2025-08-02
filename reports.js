@@ -1,6 +1,15 @@
 // Reports metadata - add new reports here
 const reportsData = [
     {
+        id: '250802',
+        title: 'AI时报：2025年8月第一周',
+        date: '2025-08-02',
+        year: 2025,
+        summary: '谷歌Gemini 2.5获数学奥赛金牌，万亿参数开源模型崛起，全球AI治理格局分化加剧',
+        highlights: ['推理能力突破', '开源生态爆发', '监管路线分化'],
+        tags: ['Gemini Deep Think', 'Kimi K2', '美国AI行动计划', '欧盟AI法案']
+    },
+    {
         id: '250726',
         title: 'AI时报：2025年7月第四周',
         date: '2025-07-26',
