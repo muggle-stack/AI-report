@@ -1,6 +1,8 @@
 # AI 时报 - AI Times
 
-每周追踪人工智能领域的重要进展、技术突破与产业动态。
+每周追踪人工智能领域的重要进展、技术突破与产业动态。具体页面请访问[AI时报](https://muggle-stack.github.io/AI-report/)
+
+![AI时报页面展示](images/pages.png)
 
 ## 项目简介
 
