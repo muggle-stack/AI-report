@@ -1,6 +1,15 @@
 // Reports metadata - add new reports here
 const reportsData = [
     {
+        id: '250809',
+        title: 'AI市场情报报告：2025年8月的分水岭之周',
+        date: '2025-08-09',
+        year: 2025,
+        summary: '深度解析OpenAI、Anthropic与Google新模型的战略影响，AI巨头从趋同演化转向战略分化，各自划定并巩固其独特的竞争领地',
+        highlights: ['OpenAI双线攻势：GPT-5与GPT-OSS', 'Anthropic精准打击：Claude Opus 4.1', 'Google范式转移：Genie 3世界模型'],
+        tags: ['GPT-5', 'Claude Opus 4.1', 'Genie 3', 'GPT-OSS', '世界模型', 'AI战略']
+    },
+    {
         id: '250802',
         title: 'AI时报：2025年8月第一周',
         date: '2025-08-02',
