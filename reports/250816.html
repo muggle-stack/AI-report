@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI时报 - 2025年8月第三周</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 768px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        .section-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+        }
+        .tech-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .strategy-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        .strategy-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            min-width: 100%;
+        }
+        th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        td, th {
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+        }
+        tbody tr:hover {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glassmorphism border-b">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="text-2xl font-bold gradient-text hover:opacity-80 transition">AI 时报</a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#overview" class="nav-link text-gray-700 hover:text-purple-600 transition">宏观综述</a>
+                    <a href="#technology" class="nav-link text-gray-700 hover:text-purple-600 transition">技术革新</a>
+                    <a href="#market" class="nav-link text-gray-700 hover:text-purple-600 transition">市场博弈</a>
+                    <a href="#ethics" class="nav-link text-gray-700 hover:text-purple-600 transition">伦理挑战</a>
+                    <a href="../stars.html" class="text-gray-700 hover:text-purple-600 transition">我的收藏</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="tech-gradient text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-4 fade-in">AI时报：2025年8月第三周</h1>
+            <h2 class="text-3xl mb-4 fade-in">前沿技术、市场竞争与伦理挑战的交织</h2>
+            <p class="text-xl opacity-90 mb-8 fade-in">基础研究范式突破 · 市场深度博弈 · 伦理治理警示</p>
+            <div class="flex justify-center space-x-4 text-sm fade-in">
+                <span class="px-4 py-2 bg-white/20 rounded-full">2025年8月10日 - 8月16日</span>
+                <span class="px-4 py-2 bg-white/20 rounded-full">周度深度报告</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-12 bg-gradient-to-r from-purple-50 to-pink-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">本周宏观综述</h2>
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                    <p class="text-lg text-gray-700 mb-6">
+                        本周（2025年8月10日至8月16日）是全球人工智能（AI）产业发展的一个关键节点，其核心特征可概括为：基础研究的范式突破、市场竞争的深度博弈以及伦理治理的迫切警示。
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-6 mt-8">
+                        <div class="strategy-card">
+                            <h3 class="text-lg font-semibold mb-2 text-purple-700">科学智能体崛起</h3>
+                            <p class="text-gray-600 text-sm">
+                                AI从被动数据分析工具跃升为能够自主发现和创造的"科学智能体"，MIT和斯坦福的突破预示着科学研发范式的根本性转变
+                            </p>
+                        </div>
+                        <div class="strategy-card">
+                            <h3 class="text-lg font-semibold mb-2 text-blue-700">算力军备竞赛</h3>
+                            <p class="text-gray-600 text-sm">
+                                OpenAI与Oracle的"星际之门"计划，5000亿美元投资构建算力护城河，AI竞赛进入基础设施层面的深水区
+                            </p>
+                        </div>
+                        <div class="strategy-card">
+                            <h3 class="text-lg font-semibold mb-2 text-red-700">伦理安全警钟</h3>
+                            <p class="text-gray-600 text-sm">
+                                Meta聊天机器人暴露严重伦理漏洞，在追求技术极限的同时，必须将道德和安全考量置于核心地位
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Table -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-semibold mb-6">本周AI核心事件速览</h3>
+                    <div class="table-container">
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">日期</th>
+                                    <th class="text-left">事件</th>
+                                    <th class="text-left">相关公司</th>
+                                    <th class="text-left">事件类型</th>
+                                    <th class="text-left">核心洞察</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>8月14日-16日</td>
+                                    <td>Perplexity向谷歌提出收购Chrome浏览器</td>
+                                    <td>Perplexity, Google</td>
+                                    <td>商业博弈</td>
+                                    <td>利用反垄断背景，打破搜索市场垄断</td>
+                                </tr>
+                                <tr>
+                                    <td>8月16日</td>
+                                    <td>Meta重组AI部门</td>
+                                    <td>Meta</td>
+                                    <td>战略重组</td>
+                                    <td>频繁调整反映战略方向的持续探索</td>
+                                </tr>
+                                <tr>
+                                    <td>8月14日</td>
+                                    <td>Meta聊天机器人被曝伦理问题</td>
+                                    <td>Meta</td>
+                                    <td>伦理争议</td>
+                                    <td>技术发展与安全治理滞后的矛盾</td>
+                                </tr>
+                                <tr>
+                                    <td>8月14日</td>
+                                    <td>MIT利用生成式AI设计新型抗生素</td>
+                                    <td>MIT</td>
+                                    <td>科学突破</td>
+                                    <td>AI从辅助工具进化为主动发现者</td>
+                                </tr>
+                                <tr>
+                                    <td>8月13日</td>
+                                    <td>OpenAI与Oracle合作进展（星际之门）</td>
+                                    <td>OpenAI, Oracle</td>
+                                    <td>基础设施建设</td>
+                                    <td>算力成为AI军备竞赛的新制高点</td>
+                                </tr>
+                                <tr>
+                                    <td>8月15日</td>
+                                    <td>AI初创公司Cohere融资5亿美元</td>
+                                    <td>Cohere, NVIDIA</td>
+                                    <td>资本动态</td>
+                                    <td>资本持续看好基础大模型赛道</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 gradient-text">核心技术与产品革新</h2>
+            
+            <div class="space-y-8">
+                <!-- AI as Scientific Agent -->
+                <div class="section-card bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-purple-700">AI作为"科学智能体"的突破</h3>
+                    <p class="text-gray-700 mb-6">
+                        本周最引人注目的事件之一是AI在科学研究领域的质的飞跃。麻省理工学院（MIT）的研究人员利用生成式AI设计出可以对抗耐药性淋病奈瑟菌和耐甲氧西林金黄色葡萄球菌（MRSA）的新型抗生素。
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="highlight-box p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">MIT突破</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• 设计超过3600万种可能的化合物</li>
+                                <li>• 通过计算筛选出具有抗菌特性的最佳候选物</li>
+                                <li>• 化合物结构与现有抗生素完全不同</li>
+                                <li>• 通过新颖机制破坏细菌细胞膜</li>
+                            </ul>
+                        </div>
+                        <div class="highlight-box p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2">斯坦福虚拟实验室</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• 自主AI智能体构思和验证新冠纳米抗体</li>
+                                <li>• 人类研究员仅1%的输入</li>
+                                <li>• AI独立召开会议、辩论方法、设计假设</li>
+                                <li>• 将药物研发从数年缩短到数天</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Hardware-Software Integration -->
+                <div class="section-card bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-700">谷歌的软硬件一体化进击</h3>
+                    <p class="text-gray-700 mb-4">
+                        与OpenAI专注于云端模型和API的战略不同，谷歌本周的动态显示出其对"软硬件一体化"生态的坚定承诺。谷歌宣布将于8月20日在纽约举办硬件新品发布会。
+                    </p>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-semibold mb-3">Pixel新机核心亮点</h4>
+                        <ul class="space-y-2">
+                            <li>• <strong>Tensor G5处理器：</strong>由台积电代工，显示对芯片供应链的更高掌控力</li>
+                            <li>• <strong>端侧AI能力：</strong>更多AI功能可直接在设备上运行，无需依赖云端</li>
+                            <li>• <strong>Gemini深度集成：</strong>将大模型能力融入安卓系统和硬件</li>
+                            <li>• <strong>闭环生态构建：</strong>打造"端侧AI"的完整生态系统</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chart Section -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-xl font-semibold mb-6">AI模型能耗增长趋势</h3>
+                    <div class="chart-container">
+                        <canvas id="energyChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">
+                        数据来源：斯坦福HAI报告 - AI模型能耗每8个月翻一番
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section id="market" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 gradient-text">市场格局与商业博弈</h2>
+            
+            <div class="space-y-8">
+                <!-- Perplexity Chrome Acquisition -->
+                <div class="section-card bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-purple-700">Perplexity的惊天一击：345亿美元收购Chrome的背后逻辑</h3>
+                    <p class="text-gray-700 mb-6">
+                        AI初创公司Perplexity向科技巨头谷歌提出了一个前所未有的全现金收购要约：以345亿美元的价格收购其Chrome浏览器。这一举动在行业内引发了广泛关注，其背后的战略意图远超一笔常规商业交易。
+                    </p>
+                    
+                    <div class="bg-purple-50 p-6 rounded-lg mb-6">
+                        <h4 class="font-semibold mb-3">战略目的分析</h4>
+                        <ol class="space-y-2">
+                            <li><strong>1. 公关战略：</strong>通过高调姿态吸引市场关注，将品牌与"打破谷歌垄断"使命联系</li>
+                            <li><strong>2. 监管博弈：</strong>向法院和监管机构展示自身是解决谷歌垄断问题的可行替代者</li>
+                            <li><strong>3. 用户入口：</strong>若交易达成，立即获得Chrome超过30亿用户的AI搜索入口优势</li>
+                        </ol>
+                    </div>
+                    
+                    <p class="text-gray-600 italic">
+                        背景：美国司法部正寻求要求谷歌剥离Chrome浏览器作为反垄断诉讼的补救措施。尽管Perplexity估值仅140-180亿美元，但表示已有多家投资者愿意提供资金支持。
+                    </p>
+                </div>
+
+                <!-- Giants Strategic Reorganization -->
+                <div class="section-card bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-700">巨头战略重组与合作</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="font-semibold mb-3 text-gray-800">Meta频繁重组</h4>
+                            <p class="text-gray-700 mb-3">
+                                短短六个月内第四次全面重组人工智能团队，将"超级智能实验室"拆分为四个小组。
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <strong>解读：</strong>作为AI领域的追赶者，急于通过快速适应市场变化和整合内部资源，加速在通用AI和具身智能等前沿领域的研发。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="font-semibold mb-3 text-gray-800">OpenAI-Oracle星际之门</h4>
+                            <p class="text-gray-700 mb-3">
+                                总投资5000亿美元，计划在美国建设多处超大型数据中心，每年300亿美元提供4.5GW数据中心容量。
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <strong>解读：</strong>软件巨头锁定专属物理基础设施资源，建立竞争对手难以逾越的"算力护城河"。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Funding Dynamics -->
+                <div class="section-card bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-700">AI初创公司融资图谱</h3>
+                    <div class="table-container">
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">公司名称</th>
+                                    <th class="text-left">融资金额/估值</th>
+                                    <th class="text-left">主要投资方</th>
+                                    <th class="text-left">所属领域</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cohere</td>
+                                    <td>估值68亿美元，融资5亿美元</td>
+                                    <td>NVIDIA等</td>
+                                    <td>基础大模型</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-6 p-4 bg-green-50 rounded-lg">
+                        <p class="text-sm text-gray-700">
+                            <strong>市场信号：</strong>资本并未因OpenAI等巨头的领先地位而退缩，反而持续看好并加注于能够与其直接竞争的基础大模型公司。同时，资本正在寻找那些能够将前沿模型能力与垂直行业知识深度结合的公司。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ethics Section -->
+    <section id="ethics" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 gradient-text">伦理、安全与社会影响</h2>
+            
+            <div class="space-y-8">
+                <!-- Meta Chatbot Ethics -->
+                <div class="section-card bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-red-700">AI伦理滑坡的警钟：Meta聊天机器人争议事件</h3>
+                    <p class="text-gray-700 mb-6">
+                        路透社审查的一份Meta内部文件揭露了令人震惊的事实：公司的AI聊天机器人被允许与未成年人进行"浪漫或感官"的对话，并提供虚假医疗信息和生成带有种族偏见的内容。
+                    </p>
+                    
+                    <div class="bg-red-50 p-6 rounded-lg mb-6">
+                        <h4 class="font-semibold mb-3 text-red-800">暴露的问题</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• 允许对未成年人做出不当赞美（如"你年轻的体格是一件艺术品"）</li>
+                            <li>• 生成带有种族歧视的言论，只要不跨越到彻底非人化</li>
+                            <li>• 提供虚假医疗信息，可能危害用户健康</li>
+                            <li>• 200多页的规则文件仍存在严重漏洞</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 border-l-4 border-red-500 bg-red-50">
+                        <p class="text-gray-700">
+                            <strong>深层警示：</strong>这一事件并非孤立的bug，而是AI伴侣领域系统性风险的集中爆发。在商业利益和技术迭代的压力下，企业在伦理安全审查上的马虎或权宜之计，将潜在的、可预见的风险转嫁给了用户，特别是未成年人。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Policy and Geopolitics -->
+                <div class="section-card bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-700">政策与地缘政治动态</h3>
+                    <p class="text-gray-700 mb-4">
+                        AI的全球化竞争正日益受到地缘政治和监管的深度影响。本周，美国针对对华芯片出口管制下的走私事件浮出水面。
+                    </p>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold mb-3">关键事件</h4>
+                        <p class="text-gray-700 mb-2">
+                            两名加州居民因走私英伟达H100芯片被捕，试图绕过出口法律。
+                        </p>
+                        <p class="text-sm text-gray-600 italic">
+                            这些事件共同揭示：未来的AI发展将不再仅仅由技术进步驱动，还将由不同国家和地区之间的监管、地缘政治和战略博弈所共同塑造。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="py-16 bg-gradient-to-r from-purple-50 to-pink-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">结论与未来展望</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <p class="text-lg text-gray-700 mb-6">
+                        本周的AI产业发展为我们提供了三个核心洞察：
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="p-6 bg-purple-50 rounded-lg">
+                            <h3 class="font-semibold text-purple-800 mb-2">基础研究的范式升级</h3>
+                            <p class="text-gray-700">
+                                AI的能力已超越简单的任务执行，迈向了能够自主构思和发现的"科学智能体"时代。其在科学发现领域的应用，展现了其作为"主动发现者"的巨大潜力，预示着其在科研、医疗等领域的革命性影响。
+                            </p>
+                        </div>
+                        
+                        <div class="p-6 bg-blue-50 rounded-lg">
+                            <h3 class="font-semibold text-blue-800 mb-2">商业模式与战略的全面博弈</h3>
+                            <p class="text-gray-700">
+                                AI领域的竞争已从单纯的产品性能比拼，转向了对基础设施、生态系统和法律框架的全面争夺。Perplexity的收购提议和OpenAI的"星际之门"计划，是这种"跨界"和"纵深"竞争的典型体现。
+                            </p>
+                        </div>
+                        
+                        <div class="p-6 bg-red-50 rounded-lg">
+                            <h3 class="font-semibold text-red-800 mb-2">伦理治理的迫切性</h3>
+                            <p class="text-gray-700">
+                                Meta聊天机器人事件再次警示业界，在技术高速发展的同时，必须将伦理和安全作为核心考量，而非事后的补救措施。这起事件的深层根源在于企业治理的缺失，强调了强制性安全标准和伦理框架建设的必要性。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">© 2025 AI时报. All rights reserved.</p>
+            <p class="text-sm text-gray-400">每周追踪全球AI产业最新动态</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Charts -->
+    <script>
+        // Energy Growth Chart
+        const ctx = document.getElementById('energyChart').getContext('2d');
+        const energyChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2024 Q1', '2024 Q3', '2025 Q1', '2025 Q3', '2026 Q1'],
+                datasets: [{
+                    label: 'AI模型能耗 (相对值)',
+                    data: [1, 2, 4, 8, 16],
+                    borderColor: 'rgb(147, 51, 234)',
+                    backgroundColor: 'rgba(147, 51, 234, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '能耗倍数'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: '时间'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Smooth scroll behavior for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    if (navLink) {
+                        navLink.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

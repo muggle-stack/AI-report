@@ -1,6 +1,15 @@
 // Reports metadata - add new reports here
 const reportsData = [
     {
+        id: '250816',
+        title: 'AI时报：前沿技术、市场竞争与伦理挑战的交织',
+        date: '2025-08-16',
+        year: 2025,
+        summary: '本周AI产业呈现三大特征：基础研究范式突破、市场竞争深度博弈、伦理治理迫切警示，AI正从被动工具跃升为主动科学智能体',
+        highlights: ['MIT利用AI设计新型抗生素', 'Perplexity提议收购Chrome', 'Meta聊天机器人伦理争议'],
+        tags: ['科学智能体', '星际之门', 'Chrome收购', 'AI伦理', '算力竞赛']
+    },
+    {
         id: '250809',
         title: 'AI市场情报报告：2025年8月的分水岭之周',
         date: '2025-08-09',
