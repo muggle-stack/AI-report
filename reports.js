@@ -1,6 +1,15 @@
 // Reports metadata - add new reports here
 const reportsData = [
     {
+        id: '250905',
+        title: '人工智能纪事：变革一周的战略分析',
+        date: '2025-09-05',
+        year: 2025,
+        summary: '人工智能行业经历根本性转变，从无约束扩张转向战略整合、监管摩擦与现实成本清算的新成熟期',
+        highlights: ['微软发布自研MAI模型减少对OpenAI依赖', 'Anthropic15亿美元版权和解案', '美欧AI治理路线深度分化'],
+        tags: ['AI主权', '垂直整合', '版权清算', '监管分歧', '智能体AI', 'Apertus模型']
+    },
+    {
         id: '250816',
         title: 'AI时报：前沿技术、市场竞争与伦理挑战的交织',
         date: '2025-08-16',
