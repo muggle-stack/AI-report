@@ -1,6 +1,15 @@
 // Reports metadata - add new reports here
 const reportsData = [
     {
+        id: '250921',
+        title: 'AI时报：每周情报简报（2025年9月15日至21日）',
+        date: '2025-09-21',
+        year: 2025,
+        summary: '一个处于拐点的行业：万亿美元基石重塑硬件格局，认知飞跃推动AI推理时代，全球监管框架日渐成型',
+        highlights: ['英伟达50亿美元投资英特尔重塑芯片格局', '谷歌Gemini 2.5 Deep Think获ICPC金牌', '欧盟AI法案进入首轮执法浪潮'],
+        tags: ['硬件整合', '推理AI', '智能体AI', '全球监管', '版权法', '企业并购']
+    },
+    {
         id: '250905',
         title: '人工智能纪事：变革一周的战略分析',
         date: '2025-09-05',
